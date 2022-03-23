@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #2F80EC;
+}
+
+.outerContainer {
+    position: relative;
+    width: 1700px;
+    height: 800px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.bottomInterface {
+    height: 1px;
+}
+
+/********************* upload interface *********************/
+.uploadBox {
+    position: relative;
+    left: 0;
+    top: 150px;
+    width: 800px;
+    height: 500px;
+    border-radius: 20px;
+    background-color: #fff;
+    background: linear-gradient(to right, #fff 0%,#fff 48%,rgb(241, 240, 240) 48%,rgb(243, 241, 241) 100%);
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+}
+
+.uploadBox:hover {
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.uploadBox .uploadTop {
+    color: #2F80EC;
+    font-size: 1.75em;
+    font-weight: 600;
+    /* width: 200px; */
+    padding: 20px;
+    position: relative;
+    left: 45px;
+    top: 30px;
+}
+
+.formItemBox {
+    width: 600px;
+    margin-top: -30px;
+}
+
+.formItemBox #uploadFileInput {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.uploadIcon {
+    position: absolute;
+    left: 125px;
+    top: 150px;
+    cursor: pointer;
+}
+
+.uploadIcon i {
+    font-size: 150px;
+    color: #A3ADBA;
+}
+
+.formItemBox #uploadFileInput + label {
+    position: absolute;
+    top: 335px;
+    left: 110px;
+    width: 180px;
+    height: 40px;
+    transform: translate(-10px, 50px);
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: #2F80EC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.formItemBox #uploadFileInput:focus + label,
+.formItemBox #uploadFileInput + label:hover {
+    background-color: #3e60c7;
+}
+
+.selectedFile {
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    width: 300px;
+    height: 350px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.selectedFile .labelInput {
+    position: relative;
+    top: -15px;
+    width: 226px;
+    height: 30px;
+    border: 2px solid #A3ADBA;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.selectedFile .labelInput:focus {
+    outline: none;
+}
+
+.selectedFile .pImage {
+    width: 240px;
+    height: 240px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectedFile img {
+    width: 100%;
+}
+
+.selectedFile .selectedFileName {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #5F6368;
+}
+
+.formItemBox #uploadButton {
+    position: relative;
+    top: -9999px;
+    left: -9999px;
+    width: 100px;
+    height: 40px;
+    background-color: #2F80EC;
+    border: none;
+    font-size: 1.25em;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.formItemBox #uploadButton:hover {
+    background-color: #3e60c7;
+}
+
+/********************* search interface *********************/
+.search {
+    position: relative;
+    top: -500px;
+    left: 900px;
+    width: 500px;
+    height: 100px;
+}
+
+.mainInterface {
+    position: relative;
+    display: flex;
+}
+
+.mainInterface .searchIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 40px;
+}
+
+.mainInterface .searchIcon i {
+    font-size: 25px;
+    color: #5F6368;
+}
+
+.mainInterface .searchInputBox input {
+    width: 600px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+    padding-left: 50px;
+    padding-right: 60px;
+    transition: all 0.4s;
+}
+
+.mainInterface .searchInputBox input::placeholder {
+    font-size: 20px;
+}
+
+.mainInterface .searchInputBox input:hover {
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.mainInterface .searchInputBox input:focus {
+    outline: none;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.35);
+}
+
+.mainInterface .voiceIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: -40px;
+}
+
+.mainInterface .voiceIcon .voiceIconBack {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.mainInterface .voiceIcon i {
+    position: relative;
+    z-index: 1;
+    font-size: 25px;
+    color: #5F6368;
+    cursor: pointer;
+    transition: color 0.4s;
+}
+
+.mainInterface .voiceIcon:hover .voiceIconBack {
+    background-color: #e5e5e7;
+}
+
+.mainInterface .voiceIcon:hover i {
+    color: #0d0d0e;
+}
+
+/********************* recording interface *********************/
+.recordingInterface {
+    position: relative;
+    width: 700px;
+    height: 400px;
+    background-color: #fff;
+    /* border: 1px solid grey; */
+    top: 200px;
+    left: 500px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    display: none;
+}
+
+.blur {
+    filter: blur(3px);
+}
+
+.recordingInterface .recordingHint {
+    width: 200px;
+    line-height: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.recordingInterface .recordingIcon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid #DEDFE3;
+    transition: background-color 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recordingInterface .recordingIcon:hover {
+    background-color: #F8FAFF;
+}
+
+.recordingInterface .recordingIcon i {
+    font-size: 50px;
+    color: #EA4335;
+}
+
+/********************* picture area *********************/
+.pictureBox {
+    position: relative;
+    top: -490px;
+    left: 925px;
+    width: 716px;
+    height: 700px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    transition: box-shadow 0.3s;
+}
+
+.pictureBox:hover {
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.pictureBox .pictureItem {
+    width: 233px;
+    height: 233px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.pictureBox .pictureItem img {
+    width: 80%;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s;
+}
+
+.pictureBox .pictureItem img:hover {
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
+}
