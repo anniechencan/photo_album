@@ -363,6 +363,7 @@ body {
 .pictureBox .pictureItem {
     width: 233px;
     height: 233px;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
