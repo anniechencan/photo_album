@@ -117,7 +117,7 @@ function startRecognition() {
     // const SpeechRecognition = window.webkitSpeechRecognition;
 
     let recognition = new SpeechRecognition();
-    console.log(recognition)
+    console.log('recognition =', recognition)
 
     recognition.onstart = () => {
         console.log('开始讲话了');
