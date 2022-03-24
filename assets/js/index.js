@@ -72,7 +72,7 @@ function startRecognition() {
     };
 
     recognition.onresult = (result) => {
-        $("#searchInput").attr("value", result.results[0][0].transcript);
+        $("#searchInput").attr({"value": result.results[0][0].transcript});
     }
     recognition.start();
 };
