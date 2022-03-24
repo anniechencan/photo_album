@@ -111,12 +111,12 @@ function getObjectURL(file) {
 }
 
 function startRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     
     const status = $(".recordingHint");
-    const output = document.getElementById("result");
     // const SpeechRecognition = window.webkitSpeechRecognition;
 
-    let recognition = new webkitSpeechRecognition();
+    let recognition = new SpeechRecognition();
     console.log(recognition)
 
     recognition.onstart = () => {
