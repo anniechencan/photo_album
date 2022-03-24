@@ -32,72 +32,7 @@ function searchInput() {
         });
 }
 
-/*******************
-    send voice to s3 bucket and then request lambda function to parse the voice into text 
-    and finally apply lf again to search the parsed text
-*******************/
-function sendData(data) {
-    let config = {
-        headers: {
-            'Content-Type': data.type
-        }
-    };
-
-    // language of uploading something to s3.
-    let url = 'https://8ixyj7ee3j.execute-api.us-east-1.amazonaws.com/v1/upload/voice.b3.6998.hw2/userVoice.mp3';
-    axios
-        .put(url, data, config)
-        .then(response => {
-            // console.log(response.data)
-            console.log("Upload voice to s3 successful!!");
-            params = { 
-                q: "voiceSearch",
-                'x-api-key': '53Qj6B8jah1fXvfohvwiW5m2595oDTfN9w12KLvE'
-            };
-            // upload voice to lambda function to be parsed into text
-            apigClient
-                .searchGet(params, {}, {})
-                .then(response => {
-                    console.log('Voice input success!!');
-                    console.log('Response =', response);
-                })
-                .catch(error => {
-                    console.log('Voice input failed!!');
-                    console.log('Response =', error);
-                });
-            // wait 120s for the uplaod and transcribe process
-            setTimeout(function() {
-                params = { q: "voiceResult" };
-                apigClient
-                    .searchGet(params, {}, {})
-                    .then(response => {
-                        console.log('Voice search success!!');
-                        console.log('Response =', response);
-                        // 这里写showImage的函数
-                        // let img_list = response.data
-                        // if(img_list === "No such photos.") {
-                        //     alert("No such photos in getting pictures from voice!!");
-                        //     return;
-                        // }
-                        // for (var i = 0; i < img_list.length; i++) {
-                        //     img_url = img_list[i];
-                        //     new_img = document.createElement('img');
-                        //     new_img.src = img_url;
-                        //     document.body.appendChild(new_img);
-                        // }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        alert("Something error in getting pictures from voice");
-                    });
-            }, 120000);
-        })
-        .catch(error => {
-            console.log("Something error in uploading voice to s3 bucket: [ voice.b3.6998.hw2 ]");
-            console.log(error);
-        })
-}
-
+// get the url link of uploaded image
 function getObjectURL(file) {
     var url = null;
     if (window.createObjectURL != undefined) { // basic
@@ -110,6 +45,7 @@ function getObjectURL(file) {
     return url;
 }
 
+// record voice and recognize to english
 function startRecognition() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     
@@ -120,7 +56,7 @@ function startRecognition() {
     console.log('recognition =', recognition)
 
     recognition.onstart = () => {
-        console.log('开始讲话了');
+        console.log('start talking');
         status.empty();
         status.append(`Listening&nbsp;<i class="fas fa-spinner fa-pulse"></i>`);
     };
@@ -171,11 +107,6 @@ $(document).ready(function () {
     });
     
     /************************ recording audio ************************/
-    // get rec package
-    let rec = Recorder({
-        bitRate: 32,
-        sampleRate: 24000
-    });
     // recording begins
     $("#startRecordingIcon").click(function() {
         // show recording interface
@@ -184,39 +115,9 @@ $(document).ready(function () {
         $("#recordingInterface").removeClass('close');
         
         startRecognition();
-        // rec.open(function() {
-        //     rec.start();
-        // }, function(msg, isUserNotAllow) {
-        //     console.log((isUserNotAllow ? "UserNotAllow," : "") + "can't record:" + msg);
-        // });
     })
 
-    // recording terminates
-    // $("#stopRecordingIcon").click(function() {
-    //     // hide recording interface
-    //     console.log('停止录音按钮被按下');
-    //     $("#recordingInterface").addClass('close');
-    //     $("#bottomInterface").removeClass('blur');
-
-    //     rec.stop((blob, duration) => {
-
-    //         rec.close();
-    //         console.log('录音停止.')
-    //         console.log(URL.createObjectURL(blob), "Duration:" + duration + "ms");
-    //         console.log('blob =', blob);
-
-    //         // preview records
-    //         var audio = document.createElement("audio");
-    //         audio.controls = true;
-    //         document.body.appendChild(audio);
-    //         audio.src = URL.createObjectURL(blob);
-    //         // audio.play();
-
-    //         console.log('将发送blob音频文件');
-    //         sendData(blob);
-    //     });
-    // })
-
+    /************************ upload picture ************************/
     $("#uploadButton").click(function(){
         let labelInput = $(".labelInput").val();
         console.log('label =', labelInput);
@@ -228,12 +129,11 @@ $(document).ready(function () {
         let files = $('#uploadFileInput')[0].files[0];
         let url = 'https://8ixyj7ee3j.execute-api.us-east-1.amazonaws.com/v1/upload/b2.6998.hw2/' + files.name;
 
-        /****************************************** axios *********************************************/
+        /********************************* using axios *************************************/
         let config = {
             headers: {
                 'Content-Type': files.type,
-                'x-amz-meta-customLabels': label,
-                // "x-api-key":"V3PD7IU9fo5emUn60jNIl3OQUJsbC2k75Lvl7tRK"
+                'x-amz-meta-customLabels': label
             }
         };
         
