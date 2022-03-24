@@ -368,15 +368,16 @@ body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    margin: 10px;
 }
 
 .pictureBox .pictureItem img {
-    width: 80%;
-    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
     transform: scale(1);  
     transition: all 0.4s ease 0s;
 }
 
 .pictureBox .pictureItem img:hover {
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
 }
