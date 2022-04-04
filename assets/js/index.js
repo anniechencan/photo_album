@@ -67,6 +67,7 @@ function startRecognition() {
         setTimeout(function() {
             $("#recordingInterface").addClass('close');
             $("#bottomInterface").removeClass('blur');
+            $("#searchInput").focus();
         }, 500)
         recognition.stop();
     };
